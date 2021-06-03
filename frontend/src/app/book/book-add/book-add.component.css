@@ -1,0 +1,10 @@
+.card {
+  width: 40rem;
+  margin-top: 40px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.form-control {
+  width: 40%;
+  /* float: right; */
+}

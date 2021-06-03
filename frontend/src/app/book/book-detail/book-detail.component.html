@@ -1,0 +1,45 @@
+<div>
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Book Detail</h4>
+      <form>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Title :</label>
+          <div class="col-sm-10">
+            <div class="form-control-plaintext">
+              {{ items.title }}
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Document:</label>
+          <div class="col-sm-10">
+            <div class="form-control-plaintext">
+              <img class="images" src="{{ items.document }}" />
+            </div>
+          </div>
+        </div>
+        <!-- <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Author:</label>
+          <div class="col-sm-10">
+            <div class="form-control-plaintext">
+              {{ items.author.username }}
+            </div>
+          </div>
+        </div>-->
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Price :</label>
+          <div class="col-sm-10">
+            <div class="form-control-plaintext">{{ items.price }}</div>
+          </div>
+        </div>
+        <a
+          class="btn btn-outline-danger"
+          routerLink="/delete/{{ items.id }}/"
+          (click)="goBack()"
+          >Delete</a
+        >
+      </form>
+    </div>
+  </div>
+</div>

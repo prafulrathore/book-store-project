@@ -1,0 +1,39 @@
+.card {
+  margin-left: 30px;
+  width: 23rem;
+}
+h4 {
+  margin-left: 30px;
+}
+.list-group {
+  flex-direction: row;
+  align-items: stretch;
+  height: 60px;
+}
+li.pointer {
+  cursor: pointer;
+}
+li:hover {
+  background-color: rgb(216, 216, 216);
+}
+.col-sm-2 {
+  background-image: linear-gradient(
+    to right top,
+    #9fb4d3,
+    #84a2ea,
+    #8389fa,
+    #9d65fb,
+    #c512eb
+  );
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  text-align: center;
+  /* margin-bottom: 0px; */
+}
+a {
+  text-decoration: none;
+}
+p {
+  font-size: small;
+  color: blue;
+}

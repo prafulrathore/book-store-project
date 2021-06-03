@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="card">
+    <div class="card-body">
+      <form class="form-group" (ngSubmit)="(createBook)">
+        <h1 style="text-align: center">Create Book</h1>
+        <div class="row">
+          <label for="ex3" class="col-sm-2">Title :</label>
+
+          <input
+            type="text"
+            name="title"
+            class="form-control"
+            [(ngModel)]="book.title"
+            placeholder="Title"
+          />
+        </div>
+        <br />
+        <div class="row">
+          <label for="ex3" class="col-sm-2">File :</label>
+
+          <input
+            type="file"
+            name="file"
+            class="form-control"
+            [(ngModel)]="book.document"
+            placeholder="File"
+          />
+        </div>
+        <br />
+        <div class="row">
+          <label for="ex3" class="col-sm-2">Price :</label>
+          <input
+            type="text"
+            name="price"
+            class="form-control"
+            [(ngModel)]="book.price"
+            placeholder="Price"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

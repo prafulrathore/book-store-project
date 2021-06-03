@@ -1,0 +1,14 @@
+<h4>Book List</h4>
+<div class="card">
+  <ul *ngFor="let book of books; let indexOfelement = index" class="list-group">
+    <div class="col-sm-2" style="padding-top: 12px">{{ indexOfelement }}</div>
+    <div class="col-sm">
+      <a routerLink="/detail/{{ book.id }}/">
+        <li class="list-group-item">
+          {{ book.title }}
+          <p>Authors : {{ book.author[0]?.username }}</p>
+        </li>
+      </a>
+    </div>
+  </ul>
+</div>

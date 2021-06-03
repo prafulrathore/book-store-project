@@ -1,0 +1,47 @@
+<div class="container" style="padding-top: 40px">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <div class="card mx-4">
+        <div class="card-body p-4">
+          <form class="form-group" (ngSubmit)="onSubmitAccount()">
+            <h1 style="text-align: center">Register</h1>
+
+            <div class="input-group mb-3">
+              Username :
+              <input
+                type="text"
+                name="username"
+                class="form-control"
+                [(ngModel)]="username"
+                placeholder="Username"
+              />
+            </div>
+            <div class="input-group mb-3">
+              Password :
+              <input
+                type="password"
+                name="password"
+                class="form-control"
+                [(ngModel)]="password"
+                placeholder="Password"
+              />
+            </div>
+            <div class="input-group mb-4">
+              Email :
+              <input
+                type="text"
+                name="email"
+                class="form-control"
+                [(ngModel)]="email"
+                placeholder="Email"
+              />
+            </div>
+            <a routerLink="/login/" type="submit" class="btn btn-outline-info"
+              >Submit</a
+            >
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
