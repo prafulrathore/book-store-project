@@ -53,6 +53,7 @@ Package_Apps = [
     # Third party packages/ modules
     "rest_framework",
     "rest_framework.authtoken",
+    "django_filters",
     "corsheaders",
 ]
 
@@ -136,6 +137,15 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.TokenAuthentication",
     ),
+    "DEFAULT_PARSER_CLASSES": (
+        "rest_framework.parsers.JSONParser",
+        "rest_framework.parsers.FormParser",
+        "rest_framework.parsers.MultiPartParser",
+    ),
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    # "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.CursorPagination",
+    # "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10,
 }
 
 
@@ -158,6 +168,9 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = "/media/"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -165,4 +178,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # AUTH_USER_MODEL = "users.User"
 
-CORS_ORIGIN_WISHLIST = "localhost:4200"
+# CORS_ORIGIN_WISHLIST = "http//:localhost:4200"
+CORS_ORIGIN_ALLOW_ALL = True

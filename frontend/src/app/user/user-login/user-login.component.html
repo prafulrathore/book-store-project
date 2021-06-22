@@ -3,37 +3,57 @@
     <div class="col-md-6 mx-auto">
       <div class="card mx-4">
         <div class="card-body p-4">
-          <form class="form-group">
+          <form class="form-group" [formGroup]="form" (ngSubmit)="login()">
             <h1 style="text-align: center">Login</h1>
-
-            <div class="input-group mb-3">
+            <div class="row">
               Username :
-              <input
-                type="text"
-                name="username"
-                class="form-control"
-                [(ngModel)]="username"
-                placeholder="Username"
-              />
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  name="username"
+                  class="form-control"
+                  formControlName="username"
+                  placeholder="Username"
+                />
+              </div>
             </div>
-            <div class="input-group mb-3">
-              Password :
-              <input
-                type="password"
-                name="password"
-                class="form-control"
-                [(ngModel)]="password"
-                placeholder="Password"
-              />
-            </div>
-            <a
-              routerLink="/home/"
-              type="submit"
-              class="btn btn-outline-info"
-              (click)="login()"
+            <div
+              *ngIf="
+                form.controls['username'].invalid &&
+                (form.controls['username'].dirty ||
+                  form.controls['username'].touched)
+              "
+              class="alert alert-danger"
             >
-              Submit
-            </a>
+              <div *ngIf="form.controls['username'].errors!.required">
+                This Field is required
+              </div>
+            </div>
+            <div class="row">
+              Password :
+              <div class="input-group mb-3">
+                <input
+                  type="password"
+                  name="password"
+                  class="form-control"
+                  formControlName="password"
+                  placeholder="Password"
+                />
+              </div>
+            </div>
+            <div
+              *ngIf="
+                form.controls['password'].invalid &&
+                (form.controls['password'].dirty ||
+                  form.controls['password'].touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="form.controls['password'].errors!.required">
+                This Field is required
+              </div>
+            </div>
+            <button type="submit" class="btn btn-outline-info">Submit</button>
           </form>
         </div>
       </div>

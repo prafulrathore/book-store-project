@@ -12,6 +12,9 @@ import { UserService } from '../services/user.service';
 export class HomeComponent implements OnInit {
   currentUser: User;
   users = [];
+  searchData: string[] = [];
+  searchText = '';
+  term = '';
   constructor(
     private bookservice: BookService,
     private authService: AuthService,
@@ -21,13 +24,26 @@ export class HomeComponent implements OnInit {
     console.log('User', this.currentUser);
   }
   ngOnInit(): void {
-    this.loadAllUsers();
+    // this.loadAllUsers();
   }
 
-  private loadAllUsers() {
-    this.userService
-      .getUsers()
-      .pipe(first())
-      .subscribe((users) => (this.users = users));
+  // loadAllUsers() {
+  //   this.userService
+  //     .getUsers(this.term)
+  //     .pipe(first())
+  //     .subscribe(
+  //       (users) => ((this.users = users), console.log(this.users, 'ghdgj'))
+  //     );
+  // }
+  searchBox() {
+    debugger;
+    this.bookservice.searchBook().subscribe((data) => {
+      console.log(data, 'searchitems');
+      if (data) {
+      
+        this.searchData.push(data);
+        console.log('ddhf', this.searchData);
+      }
+    });
   }
 }

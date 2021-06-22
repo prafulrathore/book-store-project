@@ -1,3 +1,47 @@
-<h1>Welcome to BookStore</h1>
-<h1>Hi {{ currentUser.username }}!</h1>
-<app-book-list></app-book-list>
+<form class="d-flex">
+  <input
+    class="form-control me-2"
+    type="search"
+    placeholder="Search"
+    aria-label="Search"
+  />
+  <!-- <button
+    class="btn btn-outline-success"
+    type="submit"
+    (click)="loadAllUsers()"
+  > -->
+  <!-- Search
+  </button> -->
+  <ul class="search-result">
+    <li *ngFor="let user of users"></li>
+  </ul>
+</form>
+<form #searchForm="ngForm" (ngSubmit)="searchBox()">
+  <div class="input-group btn-group">
+    <input
+      [(ngModel)]="searchText"
+      name="search"
+      type="text"
+      class="form-input input-lg"
+      placeholder="Search here..."
+    />
+    <button class="btn btn-primary search_btn" type="submit">
+      <i class="icon icon-search"></i>
+    </button>
+    <div class="menu-item">
+      <select
+        *ngFor="let search of searchData"
+        class="form-select"
+        name="searchData"
+        [(ngModel)]="searchText"
+      >
+        {{
+          search
+        }}
+      </select>
+    </div>
+  </div>
+  <h1>Welcome to BookStore</h1>
+  <h1>Hi {{ currentUser.username }}!</h1>
+  <app-book-list></app-book-list>
+</form>

@@ -7,39 +7,117 @@
           <label class="col-sm-2 col-form-label">Title :</label>
           <div class="col-sm-10">
             <div class="form-control-plaintext">
-              {{ items.title }}
+              <b>{{ items?.title }}</b>
             </div>
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Document:</label>
+          <label class="col-sm-2 col-form-label">Book:</label>
           <div class="col-sm-10">
             <div class="form-control-plaintext">
-              <img class="images" src="{{ items.document }}" />
+              <img
+                src="{{ items?.document }}
+                "
+              />
             </div>
           </div>
         </div>
-        <!-- <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Author:</label>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Pdf:</label>
           <div class="col-sm-10">
             <div class="form-control-plaintext">
-              {{ items.author.username }}
+              <a href="{{ items?.pdf }}" target="_blank">Click Here</a>
             </div>
           </div>
-        </div>-->
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Author:</label>
+          <div class="col-sm-10">
+            <div *ngFor="let author of authors" class="form-control-plaintext">
+              {{ author | titlecase }}
+            </div>
+          </div>
+        </div>
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Price :</label>
           <div class="col-sm-10">
-            <div class="form-control-plaintext">{{ items.price }}</div>
+            <div class="form-control-plaintext">
+              {{ items?.price }}
+            </div>
           </div>
         </div>
-        <a
-          class="btn btn-outline-danger"
-          routerLink="/delete/{{ items.id }}/"
-          (click)="goBack()"
-          >Delete</a
-        >
       </form>
+    </div>
+  </div>
+</div>
+
+<div class="button">
+  <button class="btn btn-outline-warning" (click)="home()">Home</button>
+  <button
+    class="btn btn-outline-info"
+    (click)="getBookUpdate(items?.id, items)"
+  >
+    Update
+  </button>
+  <button class="btn btn-outline-danger" (click)="getBookDelete(items?.id)">
+    Delete
+  </button>
+</div>
+<div *ngIf="update">
+  <div>
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Book Detail</h4>
+        <form>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Title :</label>
+            <div class="col-sm-10">
+              <div class="form-control-plaintext">
+                <input type="text" name="text" {{ items?.title }} />
+                >
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Book:</label>
+            <div class="col-sm-10">
+              <div class="form-control-plaintext">
+                <img
+                  src="{{ items?.document }}
+                  "
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Pdf:</label>
+            <div class="col-sm-10">
+              <div class="form-control-plaintext">
+                <a href="{{ items?.pdf }}" target="_blank">Click Here</a>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Author:</label>
+            <div class="col-sm-10">
+              <div
+                *ngFor="let author of authors"
+                class="form-control-plaintext"
+              >
+                {{ author | titlecase }}
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Price :</label>
+            <div class="col-sm-10">
+              <div class="form-control-plaintext">
+                {{ items?.price }}
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>

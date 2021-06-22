@@ -1,13 +1,30 @@
+from cgitb import lookup
 from django.contrib.auth.models import User
 
 from rest_framework import serializers
 
-from users.api.serializers import UserSerializer
-from book.models import Book
+from book.models import Book, Category
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ["id", "category"]
 
 
 class BookSerializer(serializers.ModelSerializer):
-    author = UserSerializer(many=True)
+    author = serializers.SlugRelatedField(
+        many=True, queryset=User.objects.all(), slug_field="username"
+    )
+    category = CategorySerializer()
+    document = serializers.FileField(
+        max_length=None,
+        use_url=True,
+    )
+    pdf = serializers.FileField(
+        max_length=None,
+        use_url=True,
+    )
 
     class Meta:
         model = Book
@@ -16,6 +33,8 @@ class BookSerializer(serializers.ModelSerializer):
             "title",
             "author",
             "document",
+            "pdf",
+            "category",
             "price",
         ]
 
@@ -24,24 +43,9 @@ class BookSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Price should be less than Rs.200 ")
         return value
 
-    # def validate(self, data):
-    #     if not "book" in data["title"]:
-    #         raise serializers.ValidationError("title should be related to book")
-    #     return data
-
-    # def create(self, validated_data):
-    #     authors = validated_data.pop("author")
-    #     book = Book.objects.create(**validated_data)
-
-    #     for author in authors:
-    #         author, created = User.objects.get_or_create(**authors)
-    #         book.authors.add(author)
-    #     return book
-
-    # def update(self, instance, validated_data):
-    #     instance.title = validated_data.get("title", instance.title)
-    #     instance.author = validated_data.get("author", instance.author)
-    #     instance.document = validated_data.get("document", instance.document)
-    #     instance.price = validated_data.get("price", instance.price)
-    #     instance.save()
-    #     return instance
+    def create(self, validated_data):
+        category_data = validated_data.pop("category")
+        book = Book.objects.create(**validated_data)
+        category = Category.objects.create(**category_data)
+        book.category = category
+        return book

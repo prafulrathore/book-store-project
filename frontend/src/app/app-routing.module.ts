@@ -18,7 +18,8 @@ const routes: Routes = [
   { path: 'create', component: BookAddComponent },
   { path: 'detail/:id', component: BookDetailComponent },
   { path: 'delete/:id', component: BookDetailComponent },
-  // {path : }
+  { path: 'update/:id', component: BookDetailComponent },
+  { path: 'searchbook/:string', component: HomeComponent },
 ];
 
 @NgModule({

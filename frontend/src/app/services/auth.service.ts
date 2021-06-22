@@ -38,9 +38,9 @@ export class AuthService {
   ): Observable<any> {
     const url = `${AUTH_URL}/register/`;
     const newUser = {
-      username: '',
-      password: '',
-      email: '',
+      username,
+      password,
+      email,
     };
     return this.http.post(url, newUser);
   }
@@ -50,6 +50,7 @@ export class AuthService {
     const url = `${AUTH_URL}/login/`;
     return this.http.post(url, { username, password }).pipe(
       map((user) => {
+        console.log(user);
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.currentUserSubject.next(<any>user);

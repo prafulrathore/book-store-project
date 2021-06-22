@@ -1,7 +1,7 @@
 <div class="row">
   <div class="card">
     <div class="card-body">
-      <form class="form-group" (ngSubmit)="(createBook)">
+      <form [formGroup]="form" class="form-group" (ngSubmit)="createBook()">
         <h1 style="text-align: center">Create Book</h1>
         <div class="row">
           <label for="ex3" class="col-sm-2">Title :</label>
@@ -10,10 +10,23 @@
             type="text"
             name="title"
             class="form-control"
-            [(ngModel)]="book.title"
+            formControlName="title"
             placeholder="Title"
+            required
           />
         </div>
+        <div
+          *ngIf="
+            form.controls['title'].invalid &&
+            (form.controls['title'].dirty || form.controls['title'].touched)
+          "
+          class="alert alert-danger"
+        >
+          <div *ngIf="form.controls['title'].errors!.required">
+            Title is Required
+          </div>
+        </div>
+
         <br />
         <div class="row">
           <label for="ex3" class="col-sm-2">File :</label>
@@ -21,10 +34,78 @@
           <input
             type="file"
             name="file"
+            (change)="onFileChange($event)"
             class="form-control"
-            [(ngModel)]="book.document"
-            placeholder="File"
+            formControlName="document"
+            placeholder="Book Image"
           />
+          <br />
+          <img
+            *ngIf="url"
+            class="img-responsive"
+            style="height: 10%"
+            [src]="url"
+          />
+        </div>
+        <div
+          *ngIf="
+            form.controls['document'].invalid &&
+            (form.controls['document'].dirty ||
+              form.controls['document'].touched)
+          "
+          class="alert alert-danger"
+        >
+          <div *ngIf="form.controls['document'].errors!.required">
+            File is Required
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <label for="ex3" class="col-sm-2">PDF :</label>
+
+          <input
+            type="file"
+            name="file"
+            (change)="onPdfFileChange($event)"
+            class="form-control"
+            formControlName="pdf"
+            placeholder="Pdf"
+          />
+        </div>
+        <div
+          *ngIf="
+            form.controls['pdf'].invalid &&
+            (form.controls['pdf'].dirty || form.controls['pdf'].touched)
+          "
+          class="alert alert-danger"
+        >
+          <div *ngIf="form.controls['pdf'].errors!.required">
+            Pdf is Required
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <label for="ex3" class="col-sm-2">Author :</label>
+
+          <input
+            type="text"
+            name="author"
+            class="form-control"
+            formControlName="author"
+            placeholder="author"
+            multiple
+          />
+        </div>
+        <div
+          *ngIf="
+            form.controls['author'].invalid &&
+            (form.controls['author'].dirty || form.controls['author'].touched)
+          "
+          class="alert alert-danger"
+        >
+          <div *ngIf="form.controls['author'].errors!.required">
+            Author is Required
+          </div>
         </div>
         <br />
         <div class="row">
@@ -33,10 +114,22 @@
             type="text"
             name="price"
             class="form-control"
-            [(ngModel)]="book.price"
+            formControlName="price"
             placeholder="Price"
           />
         </div>
+        <div
+          *ngIf="
+            form.controls['price'].invalid &&
+            (form.controls['price'].dirty || form.controls['price'].touched)
+          "
+          class="alert alert-danger"
+        >
+          <div *ngIf="form.controls['price'].errors!.required">
+            Price is should be less than 200.
+          </div>
+        </div>
+        <button type="submit" class="btn btn-outline-warning">Submit</button>
       </form>
     </div>
   </div>

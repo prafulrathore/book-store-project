@@ -7,3 +7,28 @@
 .card-title {
   text-align: center;
 }
+img {
+  width: 60px;
+  height: 80px;
+}
+a {
+  text-decoration: none;
+}
+.button {
+  margin-left: 450px;
+  margin-top: 35px;
+}
+.btn-outline-danger {
+  margin-left: 10px;
+}
+.card-title {
+  background: -webkit-linear-gradient(
+    #d81bd8,
+    #b737da,
+    #9444d9,
+    #714cd4,
+    #4a50cb
+  );
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

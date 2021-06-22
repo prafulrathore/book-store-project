@@ -1,8 +1,14 @@
 .btn-outline-info {
   margin-left: 210px;
 }
-input {
+/* input {
   display: inline-block;
   width: 80px;
   text-align: left;
+} */
+.input-group {
+  width: 70%;
+}
+.field {
+  font-size: 12px;
 }
